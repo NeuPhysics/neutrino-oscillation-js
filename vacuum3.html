@@ -171,19 +171,19 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label style="display:block;">Energy of Neutrinos</label>
-                                            <input style="display:inline;width:50%;" type="text" class="form-control border-input" placeholder="Energy" id="vacEnergy" value="1"> MeV
+                                            <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="Energy" id="vacEnergy" value="1"> MeV
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label style="display:block;">Mass Squared Difference</label>
-                                            <input style="display:inline;width:50%;" type="text" class="form-control border-input" placeholder="Mass Squared Difference" id="vacMassSquared" value=7.53> ×10<sup>-5</sup>eV<sup>2</sup>
+                                            <label style="display:block;">Mass Squared Difference $\lvert\Delta m_{12}\rvert$</label>
+                                            <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="Mass Squared Difference" id="vacMassSquared12" value=7.53> ×10<sup>-5</sup>eV<sup>2</sup>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label style="display:block;">Vacuum Mixing Angle</label>
-                                            <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="Mixing Angle" id="vacMixingAngle" value="0.59"> RAD
+                                            <label style="display:block;">Mass Squared Difference $\lvert\Delta m_{32}\rvert$</label>
+                                            <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="Mass Squared Difference" id="vacMassSquared32" value="2.44"> ×10<sup>-3</sup>eV<sup>2</sup>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -194,8 +194,18 @@
                                     </div>
                             </div>
 
-                            <div id="vacuum-oscillation" class="plot"></div>
-                            <div id="vacuum-oscillation-mass-eigenstate" class="plot"></div>
+                            <div id="vacuum-oscillation-3" class="plot"></div>
+                            <div class="chart-legend" style="text-align:center;">
+                                <span style="color:#0074D9;"><i class="fa fa-circle"></i>$\nu_e$ Probability</span>
+                                <span style="color:#FF4136;"><i class="fa fa-circle"></i>$\nu_\mu$ Probability</span>
+                                <span style="color:#2ECC40;"><i class="fa fa-circle"></i>$\nu_\tau$ Probability</span>
+                            </div>
+                            <div id="vacuum-oscillation-mass-eigenstate-3" class="plot"></div>
+                            <div class="chart-legend" style="text-align:center;">
+                                <span style="color:#001f3f;"><i class="fa fa-circle"></i>$\nu_1$ Probability</span>
+                                <span style="color:#85144b;"><i class="fa fa-circle"></i>$\nu_2$ Probability</span>
+                                <span style="color:#3D9970;"><i class="fa fa-circle"></i>$\nu_3$ Probability</span>
+                            </div>
 
 
                             <script id="vacuum-oscillation-javascript">
@@ -203,18 +213,17 @@
                             function plotvac() {
 
                               var vacEnergyValue = document.getElementById("vacEnergy").value;
-                              var vacMassSquaredValue = document.getElementById("vacMassSquared").value;
-                              var vacMixingAngleValue = document.getElementById("vacMixingAngle").value;
+                              var vacMassSquared12Value = document.getElementById("vacMassSquared12").value;
+                              var vacMassSquared32Value = document.getElementById("vacMassSquared32").value;
                               var vacInitialElectronFlavorValue = document.getElementById("vacInitialElectronFlavor").value;
 
-                              var vacOscLength = 2*parseFloat(vacEnergyValue)*4.0*197.0/(10^6 * parseFloat(vacMassSquaredValue) );
+                              var vacOscLength = 2*parseFloat(vacEnergyValue)*4.0*197.0/(10^6 * parseFloat(vacMassSquared12Value) );
 
-                              var vaca = Math.sqrt(vacInitialElectronFlavorValue);
-                              var vacb = Math.sqrt(1 - vaca);
+
 
                               vacFES = functionPlot({
-                                title: 'Vacuum Oscillations Flavor Eigenstates' ,
-                                target: '#vacuum-oscillation',
+                                title: 'Vacuum Oscillations 3 Flavor Eigenstates' ,
+                                target: '#vacuum-oscillation-3',
                                 tip: {
                                 xLine: true,    // dashed line parallel to y = 0
                                 yLine: true,    // dashed line parallel to x = 0
@@ -229,25 +238,25 @@
                                   domain: [0,vacOscLength]
                                 },
                                 yAxis: {
-                                  label: 'Survival Probability',
+                                  label: 'Probability',
                                   domain: [0,1]
                                 },
                                 grid: true,
                                 data: [
                                     {
                                   //fn: vacInitialElectronFlavorValue+'*(1 - sin(2*'+vacMixingAngleValue+')^2'+'* sin(2*'+vacMassSquaredValue+'*10^(-5-12)*x*10^(18)/(197*4*'+vacEnergyValue+'))^2 )', color:'#0074D9'
-                                  fn: vaca+'^2*(cos('+vacMixingAngleValue+')^4+sin('+vacMixingAngleValue+')^4)+'+vacb+'^2*sin(2*'+vacMixingAngleValue+')^2/2-'+vaca+'*'+vacb+'*sin(2*'+vacMixingAngleValue+')*cos(2*'+vacMixingAngleValue+')+('+vaca+'^2/2*sin(2*'+vacMixingAngleValue+')^2-'+vacb+'^2/2*sin(2*'+vacMixingAngleValue+')^2+'+vaca+'*'+vacb+'*sin(2*'+vacMixingAngleValue+')*cos(2*'+vacMixingAngleValue+'))*cos(4*'+vacMassSquaredValue+'*10^(-5-12)*x*10^(18)/(197*4*'+vacEnergyValue+'))', color:'#0074D9'
-                              },
-                                {
+                                  fn: vacuum3A('e','e',1,1,vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value), color:'#0074D9'
+                              }//,
+                                //{
                                   //fn: '( sin(2*'+vacMixingAngleValue+')^2'+'* sin(2*'+vacMassSquaredValue+'*10^(-5-12)*x*10^(18)/(197*4*'+vacEnergyValue+'))^2 )', color:'red'
-                                  fn: '1-('+vaca+'^2*(cos('+vacMixingAngleValue+')^4+sin('+vacMixingAngleValue+')^4)+'+vacb+'^2*sin(2*'+vacMixingAngleValue+')^2/2-'+vaca+'*'+vacb+'*sin(2*'+vacMixingAngleValue+')*cos(2*'+vacMixingAngleValue+')+('+vaca+'^2/2*sin(2*'+vacMixingAngleValue+')^2-'+vacb+'^2/2*sin(2*'+vacMixingAngleValue+')^2+'+vaca+'*'+vacb+'*sin(2*'+vacMixingAngleValue+')*cos(2*'+vacMixingAngleValue+'))*cos(4*'+vacMassSquaredValue+'*10^(-5-12)*x*10^(18)/(197*4*'+vacEnergyValue+')))', color:'red'
-                                }
+                                  //fn: '1-('+vaca+'^2*(cos('+vacMixingAngleValue+')^4+sin('+vacMixingAngleValue+')^4)+'+vacb+'^2*sin(2*'+vacMixingAngleValue+')^2/2-'+vaca+'*'+vacb+'*sin(2*'+vacMixingAngleValue+')*cos(2*'+vacMixingAngleValue+')+('+vaca+'^2/2*sin(2*'+vacMixingAngleValue+')^2-'+vacb+'^2/2*sin(2*'+vacMixingAngleValue+')^2+'+vaca+'*'+vacb+'*sin(2*'+vacMixingAngleValue+')*cos(2*'+vacMixingAngleValue+'))*cos(4*'+vacMassSquaredValue+'*10^(-5-12)*x*10^(18)/(197*4*'+vacEnergyValue+')))', color:'red'
+                                //}
                                 ]
                               });
 
                               vacMES = functionPlot({
-                                title: 'Vacuum Oscillations Mass Eigenstates' ,
-                                target: '#vacuum-oscillation-mass-eigenstate',
+                                title: 'Vacuum Oscillations 3 Mass Eigenstates' ,
+                                target: '#vacuum-oscillation-mass-eigenstate-3',
                                 tip: {
                                 xLine: true,    // dashed line parallel to y = 0
                                 yLine: true,    // dashed line parallel to x = 0
@@ -262,17 +271,17 @@
                                   domain: [0,vacOscLength]
                                 },
                                 yAxis: {
-                                  label: 'Survival Probability',
+                                  label: 'Probability',
                                   domain: [0,1]
                                 },
                                 grid: true,
                                 data: [
                                     {
-                                  fn: vaca+'^2*cos('+vacMixingAngleValue+')^2+'+vacb+'^2*sin('+vacMixingAngleValue+')^2-sin(2*'+vacMixingAngleValue+')*'+vaca+'*'+vacb, color:'#0074D9'
+                                  fn:1, color: 'red' //vaca+'^2*cos('+vacMixingAngleValue+')^2+'+vacb+'^2*sin('+vacMixingAngleValue+')^2-sin(2*'+vacMixingAngleValue+')*'+vaca+'*'+vacb, color:'#0074D9'
                               },
                                 {
                                   //fn: '( sin(2*'+vacMixingAngleValue+')^2'+'* sin(2*'+vacMassSquaredValue+'*10^(-5-12)*x*10^(18)/(197*4*'+vacEnergyValue+'))^2 )', color:'red'
-                                  fn: '1-('+vaca+'^2*cos('+vacMixingAngleValue+')^2+'+vacb+'^2*sin('+vacMixingAngleValue+')^2-sin(2*'+vacMixingAngleValue+')*'+vaca+'*'+vacb+')', color:'red'
+                                  fn:1, color:'red'
                                 }
                                 ]
                               });
@@ -293,10 +302,7 @@
                                 <!-- Input Parameters END -->
 
                                 <div class="footer">
-                                    <div class="chart-legend">
-                                        <span style="color:#0074D9;"><i class="fa fa-circle"></i>$\nu_e$ Probability</span>
-                                        <span style="color:red;"><i class="fa fa-circle"></i>$\nu_x$ Probability</span>
-                                    </div>
+
                                     <hr>
                                     <div class="stats">
                                         <i class="ti-info"></i> Calculated Using Analytical Formula. $
