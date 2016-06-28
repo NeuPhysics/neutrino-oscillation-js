@@ -194,6 +194,11 @@
                                         </div>
                                     </div>
                             </div>
+                            <div style="text-align:center;">
+                                <hr>
+                                <button type="button" onclick="plotvac();" class="btn btn-primary">Plot</button>
+                                <hr>
+                            </div>
 
                             <div id="vacuum-oscillation-3" class="plot"></div>
                             <div class="chart-legend" style="text-align:center;">
@@ -209,7 +214,9 @@
                             </div>
 
 
-                            <script id="vacuum-oscillation-javascript">
+
+
+                            <script id="vacuum-oscillation-3-javascript">
 
 
 
@@ -249,16 +256,16 @@
                                 data: [
                                     {
                                   fn: vacuumProb3Wiki('e','e',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value), color:'#0074D9'
-                              },
-                                {
-                                  fn: vacuumProb3Wiki('e','m',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value), color:'#FF4136'
-                              },
-                              {
-                                fn: vacuumProb3Wiki('e','t',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value), color:'#2ECC40'
-                            },
-                            {
-                              fn: "1-("+vacuumProb3Wiki('e','e',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value)+")-("+vacuumProb3Wiki('e','m',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value)+")", color:'black'
-                              }
+                              }//,
+                            //     {
+                            //       fn: vacuumProb3Wiki('e','m',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value), color:'#FF4136'
+                            //   },
+                            //   {
+                            //     fn: vacuumProb3Wiki('e','t',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value), color:'#2ECC40'
+                            // },
+                            // {
+                            //   fn: "1-("+vacuumProb3Wiki('e','e',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value)+")-("+vacuumProb3Wiki('e','m',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value)+")", color:'black'
+                            //   }
                                 ]
                               });
 
