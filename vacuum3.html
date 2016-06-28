@@ -188,8 +188,9 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label style="display:block;">Initial $\nu_e$ Probability</label>
-                                            <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="Electron Flavor" id="vacInitialElectronFlavor" value="1">
+                                            <label style="display:block;">Initial $\nu_e$, $\nu_\mu$ Probability (less than 1)</label>
+                                            <input style="display:inline;width:33%;" type="number" class="form-control border-input" placeholder="Electron Flavor" id="vacInitialElectronFlavor" value="1">
+                                            <input style="display:inline;width:33%;" type="number" class="form-control border-input" placeholder="Muon Flavor" id="vacInitialMuonFlavor" value="0">
                                         </div>
                                     </div>
                             </div>
@@ -210,15 +211,18 @@
 
                             <script id="vacuum-oscillation-javascript">
 
+
+
                             function plotvac() {
 
                               var vacEnergyValue = document.getElementById("vacEnergy").value;
                               var vacMassSquared12Value = document.getElementById("vacMassSquared12").value;
                               var vacMassSquared32Value = document.getElementById("vacMassSquared32").value;
                               var vacInitialElectronFlavorValue = document.getElementById("vacInitialElectronFlavor").value;
+                              var vacInitialMuonFlavorValue = document.getElementById("vacInitialMuonFlavor").value;
+                              var vacInitialTauFlavorValue =1-vacInitialElectronFlavorValue-vacInitialElectronFlavorValue;
 
                               var vacOscLength = 2*parseFloat(vacEnergyValue)*4.0*197.0/(10^6 * parseFloat(vacMassSquared12Value) );
-
 
 
                               vacFES = functionPlot({
@@ -244,13 +248,17 @@
                                 grid: true,
                                 data: [
                                     {
-                                  //fn: vacInitialElectronFlavorValue+'*(1 - sin(2*'+vacMixingAngleValue+')^2'+'* sin(2*'+vacMassSquaredValue+'*10^(-5-12)*x*10^(18)/(197*4*'+vacEnergyValue+'))^2 )', color:'#0074D9'
-                                  fn: vacuum3A('e','e',1,1,vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value), color:'#0074D9'
-                              }//,
-                                //{
-                                  //fn: '( sin(2*'+vacMixingAngleValue+')^2'+'* sin(2*'+vacMassSquaredValue+'*10^(-5-12)*x*10^(18)/(197*4*'+vacEnergyValue+'))^2 )', color:'red'
-                                  //fn: '1-('+vaca+'^2*(cos('+vacMixingAngleValue+')^4+sin('+vacMixingAngleValue+')^4)+'+vacb+'^2*sin(2*'+vacMixingAngleValue+')^2/2-'+vaca+'*'+vacb+'*sin(2*'+vacMixingAngleValue+')*cos(2*'+vacMixingAngleValue+')+('+vaca+'^2/2*sin(2*'+vacMixingAngleValue+')^2-'+vacb+'^2/2*sin(2*'+vacMixingAngleValue+')^2+'+vaca+'*'+vacb+'*sin(2*'+vacMixingAngleValue+')*cos(2*'+vacMixingAngleValue+'))*cos(4*'+vacMassSquaredValue+'*10^(-5-12)*x*10^(18)/(197*4*'+vacEnergyValue+')))', color:'red'
-                                //}
+                                  fn: vacuumProb3Wiki('e','e',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value), color:'#0074D9'
+                              },
+                                {
+                                  fn: vacuumProb3Wiki('e','m',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value), color:'#FF4136'
+                              },
+                              {
+                                fn: vacuumProb3Wiki('e','t',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value), color:'#2ECC40'
+                            },
+                            {
+                              fn: "1-("+vacuumProb3Wiki('e','e',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value)+")-("+vacuumProb3Wiki('e','m',vacEnergyValue,vacMassSquared12Value,vacMassSquared32Value)+")", color:'black'
+                              }
                                 ]
                               });
 
@@ -293,9 +301,10 @@
                             plotvac()
 
                             vacEnergy.addEventListener("input", plotvac)
-                            vacMassSquared.addEventListener("input", plotvac)
-                            vacMixingAngle.addEventListener("input", plotvac)
+                            vacMassSquared12.addEventListener("input", plotvac)
+                            vacMassSquared32.addEventListener("input", plotvac)
                             vacInitialElectronFlavor.addEventListener("input", plotvac)
+                            vacInitialMuonFlavor.addEventListener("input", plotvac)
 
                             </script>
 
