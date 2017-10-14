@@ -1,12 +1,12 @@
 function vacData(energyVal, masssquaredVal, mixangleVal, initstateVal, begVal,endVal, stepsVal) {
   var size = stepsVal, x = new Array(size), y = new Array(size), x2 = new Array(size), y2 = new Array(size), i, j;
 
-  var omegav = (masssquaredVal)/(2*energyVal);
-  var relativeLength = endVal - begVal;
+  var omegav = (masssquaredVal)/(2*energyVal); //In unit of 10^(-17) MeV, which corresponds to 5.1*10^(-4) m^(-1) = 0.51 km^(-1)
+  var relativeLength = endVal - begVal; // in unit of km
 
   for(var i = 0; i < size; i++) {
      x[i] = x2[i] = relativeLength * i / size;
-     y[i] = 1 - 0.5 * Math.pow(Math.sin( 2 * mixangleVal ), 2 ) * Math.pow( Math.sin( omegav* relativeLength * i / size / 2 ), 2 );
+     y[i] = 1 - 0.5 * Math.pow(Math.sin( 2 * mixangleVal ), 2 ) * Math.pow( Math.sin( (omegav * 0.51 ) * x[i] / 2 ), 2 ); // (omegav * 0.51 ) is the vacuum frequency in unit of km^(-1)
      y2[i] = 1-y[i];
   }
 
