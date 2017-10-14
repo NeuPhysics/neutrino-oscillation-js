@@ -116,7 +116,7 @@ function plot(energyVal,masssquaredVal, mixangleVal, densityVal, initstateVal, b
         showlegend: true,
         legend: {
           "orientation": "h",
-          x: 0.3,
+          x: 0.1,
           y: -0.3
         }
       };
