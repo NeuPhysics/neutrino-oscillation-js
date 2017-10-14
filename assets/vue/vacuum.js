@@ -17,7 +17,8 @@ function vacData(energyVal, masssquaredVal, mixangleVal, initstateVal, begVal,en
      name: 'Electron Flavor Survival Probabilities',
      line: {
        dash: 'solid',
-       width: 4
+       width: 4,
+       color: 'black'
      }
   };
 
@@ -28,7 +29,8 @@ function vacData(energyVal, masssquaredVal, mixangleVal, initstateVal, begVal,en
      name: 'Muon Flavor Survival Probabilities',
      line: {
        dash: 'dashdot',
-       width: 4
+       width: 4,
+       color: 'red'
      }
   };
 
