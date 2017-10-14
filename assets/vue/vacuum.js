@@ -81,7 +81,7 @@ var vm = new Vue({
    },
    methods: {
       execplot: function (){
-         plot(this.energy, this.masssquared,this.mixangle,this.initstate,0, this.endpoint, 1000)
+         plot(this.energy, this.masssquared,this.mixangle,this.initstate,0, this.endpoint, 10000)
       }
 
    },
