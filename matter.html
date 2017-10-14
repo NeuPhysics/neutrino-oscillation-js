@@ -29,9 +29,6 @@
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/themify-icons.css" rel="stylesheet">
 
-    <!-- Functionplot and d3 BEGIN -->
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-      <script src="assets/function-plot-1.16.5/dist/function-plot.js"></script>
 
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
@@ -82,12 +79,12 @@
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="index.html">
                         <p>Vacuum Oscillations (2)</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="matter.html">
                         <p>Oscillations in Matter</p>
                     </a>
@@ -189,7 +186,7 @@
 			  <div class="col-md-3">
 					<div class="form-group">
 						 <label style="display:block;">Electron Number Density</label>
-						 <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="1" id="vacInitialElectronFlavor" v-model.number="initstate"> $m^{-3}$
+						 <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="1" id="matDensity" v-model.number="density"> cm<sup>-3</sup>
 					</div>
 			  </div>
 			  <div class="col-md-3">
@@ -208,7 +205,7 @@
      <hr>
 	</div>
 
-  <div id="vacuum-oscillations-plot"></div>
+  <div id="const-matter-oscillations-plot"></div>
 
 
 <!-- VUE PLOTS END -->
@@ -282,14 +279,9 @@
 	<!--  Checkbox, Radio & Switch Plugins -->
 	<script src="assets/js/bootstrap-checkbox-radio.js"></script>
 
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 	<script src="assets/js/paper-dashboard.js"></script>

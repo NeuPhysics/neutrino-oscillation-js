@@ -6,7 +6,7 @@ function vacData(energyVal, masssquaredVal, mixangleVal, initstateVal, begVal,en
 
   for(var i = 0; i < size; i++) {
      x[i] = x2[i] = relativeLength * i / size;
-     y[i] = 1 - 0.5 * Math.pow(Math.sin( 2 * mixangleVal ), 2 ) * Math.pow( Math.sin( (omegav * 0.51 ) * x[i] / 2 ), 2 ); // (omegav * 0.51 ) is the vacuum frequency in unit of km^(-1)
+     y[i] = 1 - Math.pow(Math.sin( 2 * mixangleVal ), 2 ) * Math.pow( Math.sin( (omegav * 0.51 ) * x[i] / 2 ), 2 ); // (omegav * 0.51 ) is the vacuum frequency in unit of km^(-1)
      y2[i] = 1-y[i];
   }
 
