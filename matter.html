@@ -30,7 +30,9 @@
     <link href="assets/css/themify-icons.css" rel="stylesheet">
 
 
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
@@ -185,14 +187,15 @@
 			  </div>
 			  <div class="col-md-3">
 					<div class="form-group">
-						 <label style="display:block;">Electron Number Density</label>
-						 <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="1" id="matDensity" v-model.number="density"> cm<sup>-3</sup>
-					</div>
-			  </div>
-			  <div class="col-md-3">
-					<div class="form-group">
 						 <label style="display:block;">End Point</label>
 						 <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="10" id="vacEnd" v-model.number="endpoint"> km
+					</div>
+			  </div>
+
+			  <div class="col-md-12">
+					<div class="form-group">
+						 <label style="display:block;">Electron Number Density</label>
+						 <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="1e+1" id="matDensity" v-model.number="density"> x10<sup>30</sup> cm<sup>-3</sup> (x76 MeV<sup>3</sup>): Scientific notation such as 1.4e-4 is allowed.
 					</div>
 			  </div>
 
