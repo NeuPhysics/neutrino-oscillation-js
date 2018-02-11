@@ -6,7 +6,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Neutrino Oscillations in Matter | Neutrino Physics with Javascript</title>
+	<title>Neutrino Oscillations in Vaccum | Neutrino Physics with Javascript</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -86,12 +86,12 @@
 						  <p>Home</p>
 					 </a>
 				</li>
-				 <li>
+				 <li class="active">
 					  <a href="vacuum.html">
 							<p>Oscillations in Vacuum</p>
 					  </a>
 				 </li>
-				<li class="active">
+				<li>
 					  <a href="matter.html">
 							<p>Oscillations in Matter</p>
 					  </a>
@@ -113,7 +113,6 @@
 				 </li>
 			</ul>
     	</div>
-
     </div>
 
     <div class="main-panel">
@@ -126,7 +125,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Vacuum Oscillations with Matter</a>
+                    <a class="navbar-brand" href="#">Vacuum Oscillations with Two Flavors</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -195,17 +194,16 @@
 						 <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="0.59" id="vacMixingAngle" v-model.number="mixangle"> RAD
 					</div>
 			  </div>
+			  <!-- <div class="col-md-3">
+					<div class="form-group">
+						 <label style="display:block;">Initial $\nu_e$ Probability</label>
+						 <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="1" id="vacInitialElectronFlavor" v-model.number="initstate">
+					</div>
+			  </div> -->
 			  <div class="col-md-3">
 					<div class="form-group">
 						 <label style="display:block;">End Point</label>
 						 <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="10" id="vacEnd" v-model.number="endpoint"> km
-					</div>
-			  </div>
-
-			  <div class="col-md-12">
-					<div class="form-group">
-						 <label style="display:block;">Electron Number Density</label>
-						 <input style="display:inline;width:50%;" type="number" class="form-control border-input" placeholder="1e+1" id="matDensity" v-model.number="density"> x10<sup>30</sup> cm<sup>-3</sup> (x76 MeV<sup>3</sup>): Scientific notation such as 1.4e-4 is allowed.
 					</div>
 			  </div>
 
@@ -218,7 +216,8 @@
      <hr>
 	</div>
 
-  <div id="const-matter-oscillations-plot"></div>
+  <div id="vacuum-oscillations-plot"></div>
+  <div id="vacuum-vector-plot"></div>
 
 
 <!-- VUE PLOTS END -->
@@ -282,7 +281,7 @@
 
 	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-  	<script  src="assets/vue/matter.js"></script>
+  	<script  src="assets/vue/vacuum.js"></script>
 
 
     <!--   Core JS Files   -->
@@ -295,6 +294,7 @@
 
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
+
 
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 	<script src="assets/js/paper-dashboard.js"></script>
